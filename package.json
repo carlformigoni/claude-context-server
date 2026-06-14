@@ -1,0 +1,51 @@
+{
+  "name": "claude-context-server",
+  "version": "1.1.0",
+  "description": "MCP server that exposes your Claude Code project memories across all projects and to Claude.ai",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "claude-context-server": "dist/index.js"
+  },
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "export": "node dist/index.js export",
+    "watch": "node dist/index.js watch",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "claude",
+    "claude-code",
+    "model-context-protocol",
+    "memory",
+    "context",
+    "anthropic"
+  ],
+  "author": "Carl Formigoni <carl.formigoni+npm@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlformigoni/claude-context-server.git"
+  },
+  "homepage": "https://github.com/carlformigoni/claude-context-server#readme",
+  "bugs": {
+    "url": "https://github.com/carlformigoni/claude-context-server/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
+}
