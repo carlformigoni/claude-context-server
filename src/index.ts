@@ -96,7 +96,7 @@ import {
 } from "./memory-reader.js";
 
 const server = new Server(
-  { name: "claude-context-server", version: "1.1.4" },
+  { name: "claude-context-server", version: "1.2.0" },
   { capabilities: { tools: {} } }
 );
 
@@ -263,6 +263,14 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
         if (details.recentCommits) {
           sections.push(`\n## Recent Git History\n\`\`\`\n${details.recentCommits}\n\`\`\``);
+        }
+
+        if (details.commands.length > 0) {
+          const commandLines = [`\n## Custom Commands (/${details.commands.map((c) => c.name).join(", /")})`];
+          for (const cmd of details.commands) {
+            commandLines.push(`\n### /${cmd.name}\n${cmd.content}`);
+          }
+          sections.push(commandLines.join("\n"));
         }
 
         if (details.claudeMd) {

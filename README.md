@@ -47,7 +47,7 @@ Restart the Claude Desktop app.
 | Tool | Description |
 |------|-------------|
 | `list_projects` | All projects with memory files, decoded paths, and entry counts |
-| `get_project(project_name)` | Full memory dump for a named project — plus CLAUDE.md, tech stack, and recent git history |
+| `get_project(project_name)` | Full memory dump for a named project — plus CLAUDE.md, custom skills, tech stack, and recent git history |
 | `get_user_profile` | All `type: user` memory entries aggregated into one profile |
 | `get_all_feedback` | All `type: feedback` entries aggregated — lessons and conventions across every project |
 | `search(query)` | Full-text search across all memory files with project context |
@@ -125,6 +125,22 @@ Six months later, the client wants an invoicing tool. You open a new project fol
 > "Build an invoicing tool for Big Boss Gyms"
 
 Claude queries this server, finds the design memory from the website project, and builds the invoicing tool in the right red, with the right fonts, following the same copy rules — without you pasting a style guide or briefing it on the brand. The invoicing tool looks like it belongs to the same family as the website from the first line of code.
+
+---
+
+### Reusing custom skills across projects
+
+You build small business websites and created a `/add-service` skill in your first project — it knows your service page structure, the sections you always include, the tone, the CTA placement. It took a few iterations to get right.
+
+When you start the next small business website, ask Claude:
+
+> "What custom skills does my YourStuff Website project have?"
+
+Claude queries this server, returns the full `/add-service` skill definition, and can recreate it in the new project with one follow-up:
+
+> "Add that skill to this project."
+
+Every website you build from that point inherits the skill automatically — no copying files, no re-explaining the structure.
 
 ---
 

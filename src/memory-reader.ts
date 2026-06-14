@@ -23,12 +23,18 @@ export interface Project {
   memoryIndex: string;
 }
 
+export interface ProjectCommand {
+  name: string;
+  content: string;
+}
+
 export interface ProjectDetails {
   resolvedPath: string | null;
   claudeMd: string | null;
   dotClaudeMd: string | null;
   techStack: string[];
   recentCommits: string | null;
+  commands: ProjectCommand[];
 }
 
 export interface SearchResult {
@@ -547,7 +553,7 @@ export function getProjectDetails(project: Project): ProjectDetails {
   const resolvedPath = resolveProjectPath(project.folderName);
 
   if (!resolvedPath) {
-    return { resolvedPath: null, claudeMd: null, dotClaudeMd: null, techStack: [], recentCommits: null };
+    return { resolvedPath: null, claudeMd: null, dotClaudeMd: null, techStack: [], recentCommits: null, commands: [] };
   }
 
   const MAX_BYTES = 50 * 1024; // 50 KB cap per file
@@ -577,7 +583,22 @@ export function getProjectDetails(project: Project): ProjectDetails {
     if (out) recentCommits = out;
   } catch { /* not a git repo or git not installed */ }
 
-  return { resolvedPath, claudeMd, dotClaudeMd, techStack, recentCommits };
+  // Read custom slash commands from .claude/commands/
+  const commands: ProjectCommand[] = [];
+  const commandsDir = path.join(resolvedPath, ".claude", "commands");
+  if (fs.existsSync(commandsDir)) {
+    try {
+      const files = fs.readdirSync(commandsDir).filter((f) => f.endsWith(".md"));
+      for (const file of files) {
+        try {
+          const content = fs.readFileSync(path.join(commandsDir, file), "utf-8");
+          commands.push({ name: path.basename(file, ".md"), content });
+        } catch { /* skip unreadable files */ }
+      }
+    } catch { /* skip if directory unreadable */ }
+  }
+
+  return { resolvedPath, claudeMd, dotClaudeMd, techStack, recentCommits, commands };
 }
 
 // Write a new memory file to a project's memory directory and update its MEMORY.md index.
