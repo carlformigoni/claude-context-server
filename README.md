@@ -1,12 +1,20 @@
 # claude-context-server
 
-An MCP server that reads all your Claude Code project memory files and exposes them as tools. Lets any Claude instance — in any project, or via Claude.ai — query your full project history and preferences.
+An MCP server that exposes everything Claude Code knows about your projects — memories, instructions, custom skills, tech stack, and git history — as queryable tools. Lets any Claude instance, in any project or via Claude.ai, access your full context across every project you've ever worked on.
 
 ## The problem it solves
 
-Claude Code stores per-project memory at `~/.claude/projects/[project]/memory/`. Each project is siloed — Claude in one project can't see what it learned in another. Claude.ai (web/phone) can't see any of it.
+Claude Code is powerful but siloed. Everything it learns — saved memories, project instructions, custom skills you've built — is locked to the project it was created in. Claude in a new project starts with no knowledge of what was decided, fixed, or built before. Claude.ai on web or phone can't see any of it.
 
-This server bridges that gap.
+This server bridges that gap. It reads across all your projects and exposes:
+
+- **Memories** — decisions, lessons, and conventions Claude Code has saved over time
+- **CLAUDE.md instructions** — your project-specific rules and context
+- **Custom skills** — slash commands you've built, available to replicate in new projects
+- **Tech stack** — detected automatically from manifest files
+- **Git history** — recent commits so Claude knows what's been worked on
+
+All of it queryable from any Claude instance, any project, any device.
 
 ## Installation
 
