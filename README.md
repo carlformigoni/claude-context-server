@@ -162,20 +162,6 @@ Claude writes the memory directly to both projects. Next time you open either on
 
 ---
 
-### Teaching Claude reusable patterns
-
-Memory isn't just for feedback — you can deliberately save patterns and conventions so they're available everywhere. Tell Claude Code to remember a structural rule:
-
-> "Remember: for all my Laravel APIs, every endpoint returns the same response envelope — `{ data: ..., meta: { success: bool, message: string } }`. Controllers extend `BaseApiController` which has `successResponse()` and `errorResponse()` helpers. Never return raw model data directly."
-
-Claude writes this as a `reference` memory entry. Every new Laravel project you start, this server surfaces that convention automatically. Claude structures every controller the same way without you specifying it — and when it sees code that breaks the pattern, it flags it.
-
-**What works well in memory:** architectural conventions, response formats, naming rules, copy style guides, small representative snippets, deployment checklists, client preferences.
-
-**What doesn't belong in memory:** full component implementations (keep those as actual shared files), things that change with every release, anything you'd want version-controlled.
-
----
-
 ## How it works
 
 Claude Code auto-saves memory files to `~/.claude/projects/*/memory/` as you work. Each file has frontmatter with a `type` (`user`, `feedback`, `project`, `reference`) and a markdown body. This server reads them fresh on every tool call — no database, no sync, always up to date.
@@ -191,6 +177,16 @@ As long as Claude Code has opened a project — creating a `.claude` folder for 
 Conversation history is intentionally not read. Chat transcripts are large, noisy, and often contain things discussed in passing that were never meant to be permanently surfaced. Memories exist to distill what actually matters out of those conversations.
 
 The better habit is to ask Claude to save something as a memory during the session rather than trying to recover it from transcripts later. If a decision was made, a pattern agreed on, or a lesson learned — tell Claude to remember it before you close the chat.
+
+Memory isn't just for capturing what happened — you can deliberately teach Claude patterns and conventions so they're available everywhere. For example:
+
+> "Remember: for all my Laravel APIs, every endpoint returns the same response envelope — `{ data: ..., meta: { success: bool, message: string } }`. Controllers extend `BaseApiController` which has `successResponse()` and `errorResponse()` helpers. Never return raw model data directly."
+
+Claude saves this as a `reference` memory. Every new Laravel project you start, this server surfaces that convention automatically — Claude structures every controller the same way without you specifying it, and flags code that breaks the pattern.
+
+**What works well in memory:** architectural conventions, response formats, naming rules, copy style guides, deployment checklists, client preferences, small representative snippets.
+
+**What doesn't belong in memory:** full component implementations (keep those as actual shared files), things that change with every release, anything you'd want version-controlled.
 
 ## Memory file format
 
