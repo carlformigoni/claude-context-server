@@ -134,7 +134,7 @@ You build small business websites and created a `/add-service` skill in your fir
 
 When you start the next small business website, ask Claude:
 
-> "What custom skills does my YourStuff Website project have?"
+> "What custom skills does my Big Boss Gyms Website project have?"
 
 Claude queries this server, returns the full `/add-service` skill definition, and can recreate it in the new project with one follow-up:
 
