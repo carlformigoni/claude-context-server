@@ -384,6 +384,9 @@ export function getProjects(): Project[] {
   for (const entry of entries) {
     if (!entry.isDirectory()) continue;
 
+    // Skip entries that don't belong to the user's home directory (e.g. temp folders)
+    if (!entry.name.startsWith(encodeHomeDirPrefix())) continue;
+
     const memoryDir = path.join(CLAUDE_PROJECTS_DIR, entry.name, "memory");
 
     const allFiles = fs.existsSync(memoryDir)
