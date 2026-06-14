@@ -162,7 +162,11 @@ As long as Claude Code has opened a project — creating a `.claude` folder for 
 
 `save_memory` lets any Claude instance write a memory file back to any project — so Claude Desktop or Claude.ai (after an export upload) can create memories that Claude Code will see the next time you open that project.
 
-Conversation history is intentionally not read. Chat transcripts are large, noisy, and often contain things discussed in passing that were never meant to be permanently surfaced. Memories exist to distill what actually matters out of those conversations. The better habit is to ask Claude to save something as a memory during the session rather than trying to recover it from transcripts later.
+## Save as you go
+
+Conversation history is intentionally not read. Chat transcripts are large, noisy, and often contain things discussed in passing that were never meant to be permanently surfaced. Memories exist to distill what actually matters out of those conversations.
+
+The better habit is to ask Claude to save something as a memory during the session rather than trying to recover it from transcripts later. If a decision was made, a pattern agreed on, or a lesson learned — tell Claude to remember it before you close the chat.
 
 ## Memory file format
 
