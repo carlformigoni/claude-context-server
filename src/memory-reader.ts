@@ -385,9 +385,10 @@ export function getProjects(): Project[] {
     if (!entry.isDirectory()) continue;
 
     const memoryDir = path.join(CLAUDE_PROJECTS_DIR, entry.name, "memory");
-    if (!fs.existsSync(memoryDir)) continue;
 
-    const allFiles = fs.readdirSync(memoryDir).filter((f) => f.endsWith(".md"));
+    const allFiles = fs.existsSync(memoryDir)
+      ? fs.readdirSync(memoryDir).filter((f) => f.endsWith(".md"))
+      : [];
 
     let memoryIndex = "";
     const memoryFiles: MemoryFile[] = [];
