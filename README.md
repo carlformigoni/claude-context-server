@@ -158,6 +158,8 @@ Claude Code auto-saves memory files to `~/.claude/projects/*/memory/` as you wor
 
 `get_project` goes further: it resolves the real project directory on disk and reads your `CLAUDE.md` instructions, detects the tech stack from manifest files (`package.json`, `composer.json`, `requirements.txt`, etc.), and fetches the last 10 git commits.
 
+As long as Claude Code has opened a project — creating a `.claude` folder for it — this server will pull everything it can from it. Tech stack, git history, and CLAUDE.md are available from day one, before a single memory has been saved.
+
 `save_memory` lets any Claude instance write a memory file back to any project — so Claude Desktop or Claude.ai (after an export upload) can create memories that Claude Code will see the next time you open that project.
 
 ## Memory file format
