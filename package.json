@@ -1,6 +1,6 @@
 {
   "name": "claude-context-server",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "MCP server that exposes your Claude Code project memories across all projects and to Claude.ai",
   "type": "module",
   "main": "dist/index.js",
