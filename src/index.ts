@@ -96,7 +96,7 @@ import {
 } from "./memory-reader.js";
 
 const server = new Server(
-  { name: "claude-context-server", version: "1.1.0" },
+  { name: "claude-context-server", version: "1.1.1" },
   { capabilities: { tools: {} } }
 );
 

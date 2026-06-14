@@ -388,7 +388,6 @@ export function getProjects(): Project[] {
     if (!fs.existsSync(memoryDir)) continue;
 
     const allFiles = fs.readdirSync(memoryDir).filter((f) => f.endsWith(".md"));
-    if (allFiles.length === 0) continue;
 
     let memoryIndex = "";
     const memoryFiles: MemoryFile[] = [];
